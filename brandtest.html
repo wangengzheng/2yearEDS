@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>品牌馆</title>
+    <script src="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/js/autoScrean.js"></script>
+    <script src="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/js/jquery-2.1.0.min.js"></script>
+    <link href="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/css/style.css" rel="stylesheet" /> 
+</head>
+<body>
+    <div class="big_wrap" id="mainPage">
+        <div class='part_1'>
+            <img src="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/img/brand.jpg" alt="">
+        </div>
+        <div class="brand_content">
+            <ul>               
+                <li style="display:none;">
+                    <a href="javascript:;">tu</a>
+                </li>
+            </ul>
+        </div>
+        <a href="javascript:;" class="gotop" onclick="goTop();"></a>
+    </div>
+    <script>
+        function goTop() {
+            $('html body').animate({ scrollTop: '0' }, 300);
+        }
+                
+        function brandlist(list)
+        {
+            if (list)
+            {
+                var str = '';
+                $.each(list, function (index, value, list) {                    
+                    str += ' <li><a data-brandid="' + value.BrandId + '"  data-brandname=\"'+value.BrandName+'\" href=\"javascript:;\"><img src=\"' + value.BrandImg + '\" /></a></li>';
+                })
+
+                if (str)
+                {
+                    $('.brand_content > ul').html(str);
+                }
+            }
+
+        }
+		
+		function urlParam(name)
+		{
+		    if(name){
+				var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				if (!results) { return ''; }
+				return results[1] || '';
+			}
+		}
+		
+		function isForWeb()
+		{
+		    return urlParam('invitation')!='';		   
+		}
+		
+        function isIOS() {
+            return !!navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+
+        $('.brand_content >ul').on('click', 'a', function () {
+            var brandid = $(this).data('brandid');
+            if (brandid) {
+			  
+			   if(isForWeb())
+			   {
+				  var brandName =$(this).data('brandname');
+			      location.href  = 'http://m.edsmall.cn/goods/list?filterBrand='brandName+'&invitation='+urlParam('invitation');				  
+			   }
+			
+			
+                if (isIOS()) {
+                    callIOSBrand(brandid);
+                } else {
+                    callAndroidBrand(brandid);
+                }
+            }
+        })
+
+        function callIOSBrand(brandId) {
+            location.href = 'hysc://app.edsmall.cn/brand/store?brandId=' + brandId;
+        }
+        function callAndroidBrand(brandId) {
+
+            location.href = 'eds://app.edsmall.cn/brand?brandId=' + brandId;
+        }
+    </script>
+    <script src="http://116.62.8.22:9003/h5/TwoYearsBrand?callback=brandlist"></script>
+</body>
+</html>

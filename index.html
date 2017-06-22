@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>主场页面</title>
+    <script src="js/autoScrean.js"></script>
+    <link href="css/style.css" rel="stylesheet" /> 
+</head>
+<body>
+    <div class="big_wrap">
+        <img src="img/top.jpg" alt="">
+        <img src="img/bg2.jpg" alt="">
+        <img src="img/bg3.jpg" alt="">
+        <img src="img/bg4.jpg" alt="">
+        <div class="content_box"> 
+            <div class='part_2 part_public'>
+                <h3>活动专区入口</h3>
+                <div class="part_2_box">
+                    <a href="http://116.62.8.22:9003/eds/2year.html " class="left_1" data-text="秒杀专区"></a>
+                    <a href="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/brand.html" class="right_1" data-text="品牌馆"></a>
+                    <a href="javascript:;" class="right_2" data-text="设计师馆" onclick="DesignerHall()"></a>
+                </div>
+            </div>
+            <div class='part_3 part_public'>
+                <h3>活动规则</h3>
+                <p class="tips_p">* 本周年庆活动规则只针对EDS会员商城 *</p>
+                <div class="part_3_box"></div>
+            </div>
+            <div class="gohome">
+                <a href="javascript:;" onclick="Main()"></a>
+            </div>
+        </div>
+        
+    </div>
+	<script>
+	     function DesignerHall()
+		 {
+		      if(isIOS())
+			  {
+			   callDesignerIOS();
+			  }else{
+			  callDesignerAndroid();
+			  }
+		 }
+		 
+		 function Main()
+		 {
+		     if(isIOS())
+			 {
+			 callMainIOS();
+			 }else{
+			 callMainAndroid();
+			 }
+		 }
+		 
+		 function callDesignerIOS()
+		 {
+		        location.href ='eds://app.edsmall.cn/home?home_type=random';
+		 }
+		 
+		 function callDesignerAndroid()
+		 {
+		     location.href ='eds://app.edsmall.cn/home?home_type=random';
+		 }
+		 
+		 
+		 function callMainIOS()
+		 {
+				location.href ='eds://app.edsmall.cn/home?home_type=buy';		 
+		 }
+		 
+		 function callMainAndroid()
+		 {
+		 
+				location.href ='eds://app.edsmall.cn/home?home_type=buy';		 
+		 }
+		 
+		 
+		  function isIOS() {
+            return !!navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+		
+	</script>
+</body>
+</html>
