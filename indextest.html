@@ -35,8 +35,24 @@
         
     </div>
 	<script>
+			function urlParam(name)
+		{
+		    if(name){
+				var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				if (!results) { return ''; }
+				return results[1] || '';
+			}
+			return '';
+		}
+		
+		function isForWeb()
+		{
+		    return urlParam('invitation')!='';		   
+		}
+		
 	     function DesignerHall()
 		 {
+		 
 		      if(isIOS())
 			  {
 			   callDesignerIOS();
@@ -47,6 +63,12 @@
 		 
 		 function Main()
 		 {
+		 
+		    if(isForWeb())
+			{
+			   location.href='http://m.edsmall.cn/'+urlParam('invitation');
+			}
+		 
 		     if(isIOS())
 			 {
 			 callMainIOS();
