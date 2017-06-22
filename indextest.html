@@ -18,8 +18,8 @@
             <div class='part_2 part_public'>
                 <h3>活动专区入口</h3>
                 <div class="part_2_box">
-                    <a href="http://116.62.8.22:9003/eds/2year.html " class="left_1" data-text="秒杀专区"></a>
-                    <a href="http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/brand.html" class="right_1" data-text="品牌馆"></a>
+                    <a href="javascript:;" class="left_1" data-text="秒杀专区" onclick="KillZone()"></a>
+                    <a href="javascript:;" class="right_1" data-text="品牌馆" onclick="BrandZone()"></a>
                     <a href="javascript:;" class="right_2" data-text="设计师馆" onclick="DesignerHall()"></a>
                 </div>
             </div>
@@ -35,6 +35,45 @@
         
     </div>
 	<script>
+	
+	    var killUrl ='http://116.62.8.22:9003/eds/2year.html';
+	    var brandUrl ='http://etaoshop.oss-cn-hangzhou.aliyuncs.com/2years/eds/brand.html';
+	
+	   function KillZone()
+	   {	        			
+			location.href =getKillUrl();
+			return false;
+	   }
+	   
+	   function BrandZone()
+	   {
+	      	location.href =getBrandUrl();
+			return false;
+	   }
+	   
+	   
+	   function getKillUrl()
+	   {
+	     var url =killUrl ;
+	   	    if(isForWeb())
+			{
+			   url +='?invitation='+urlParam('invitation');
+			}
+			
+			return url;
+	   }
+	   
+	   function getBrandUrl()
+	   {
+	        var url =brandUrl ;
+	   	    if(isForWeb())
+			{
+			   url +='?invitation='+urlParam('invitation');
+			}
+			
+			return url;
+	   }
+	
 			function urlParam(name)
 		{
 		    if(name){
